@@ -1,0 +1,25 @@
+<form class="todo-form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input
+      type="text"
+      [(ngModel)]="title"
+      name="title"
+      placeholder="What needs to be done?"
+      class="form-input title-input"
+      autocomplete="off"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      [(ngModel)]="description"
+      name="description"
+      placeholder="Add a description (optional)"
+      class="form-input description-input"
+      autocomplete="off"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!title.trim()">
+    Add Todo
+  </button>
+</form>

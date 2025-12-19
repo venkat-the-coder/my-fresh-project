@@ -1,0 +1,63 @@
+<div class="todo-container">
+  <header class="todo-header">
+    <h1>My Todos</h1>
+    <p class="todo-stats">
+      {{ pendingCount() }} pending, {{ completedCount() }} completed
+    </p>
+  </header>
+
+  <app-todo-form (todoAdded)="onTodoAdded($event)" />
+
+  @if (totalCount() > 0) {
+    <div class="filter-bar">
+      <div class="filter-buttons">
+        <button
+          class="filter-btn"
+          [class.active]="currentFilter === 'all'"
+          (click)="setFilter('all')"
+        >
+          All ({{ totalCount() }})
+        </button>
+        <button
+          class="filter-btn"
+          [class.active]="currentFilter === 'pending'"
+          (click)="setFilter('pending')"
+        >
+          Pending ({{ pendingCount() }})
+        </button>
+        <button
+          class="filter-btn"
+          [class.active]="currentFilter === 'completed'"
+          (click)="setFilter('completed')"
+        >
+          Completed ({{ completedCount() }})
+        </button>
+      </div>
+      @if (completedCount() > 0) {
+        <button class="clear-btn" (click)="onClearCompleted()">
+          Clear completed
+        </button>
+      }
+    </div>
+  }
+
+  <div class="todo-list">
+    @for (todo of filteredTodos; track todo.id) {
+      <app-todo-item
+        [todo]="todo"
+        (toggled)="onTodoToggled($event)"
+        (deleted)="onTodoDeleted($event)"
+      />
+    } @empty {
+      <div class="empty-state">
+        @if (currentFilter === 'all') {
+          <p>No todos yet. Add one above!</p>
+        } @else if (currentFilter === 'pending') {
+          <p>No pending todos. Great job!</p>
+        } @else {
+          <p>No completed todos yet.</p>
+        }
+      </div>
+    }
+  </div>
+</div>
