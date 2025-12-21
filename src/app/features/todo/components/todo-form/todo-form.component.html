@@ -19,6 +19,7 @@
       autocomplete="off"
     />
   </div>
+  <app-category-select [(selectedCategoryId)]="categoryId" />
   <button type="submit" class="btn btn-primary" [disabled]="!title.trim()">
     Add Todo
   </button>
