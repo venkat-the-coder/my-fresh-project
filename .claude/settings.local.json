@@ -16,7 +16,12 @@
       "Bash(rm:*)",
       "Bash(npm run build:*)",
       "Bash(npm test:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "context7"
+  ]
 }
